@@ -39,6 +39,15 @@ function createGrid(grids) {
                 let randomColor3 = getRandomInt(255)+1;
                 
                 gridDiv.style.backgroundColor = `rgb(${randomColor1},${randomColor2},${randomColor3})`;
+            } else if (mode == "opacity") {
+                gridDiv.style.backgroundColor = "black";
+                let gridOpacity = gridDiv.style.opacity;
+                if (Number(gridOpacity) < 1) {
+                    gridDiv.style.opacity = String(Number(gridOpacity) + 0.1);
+                }
+                
+                
+                
             }
             
         })
