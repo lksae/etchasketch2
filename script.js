@@ -17,12 +17,13 @@ containerDiv.style.height = containerDivSize + "px";
 const gridNumbers = 16;
 
 
-let gridItemsSize = (containerDivSize  - (gridNumbers * 4)) / gridNumbers   ; 
-console.log(containerDivSize);
-console.log(gridItemsSize);
+
+
 
 
 function createGrid(grids) {
+    let gridItemsSize = (containerDivSize  - (grids * 4)) / grids;
+    let mode = document.querySelector(".optionSet").value;
     for (let i = 1; i <= grids*grids; i++) {
         const gridDiv = document.createElement("div");
         gridDiv.classList.add("grid");
@@ -30,19 +31,37 @@ function createGrid(grids) {
         gridDiv.style.height = gridItemsSize + "px";
         containerDiv.appendChild(gridDiv);
         gridDiv.addEventListener("mouseover", event => {
-            gridDiv.style.backgroundColor = "black";
+            if(mode == "standard") {
+                gridDiv.style.backgroundColor = "black";
+            } else if (mode == "opacity") {
+                
+            }
+            
         })
     }
+    
+    
 }
 
 // get input number for squares
-const inputField = document.querySelector(".input");
+//let inputField = document.querySelector(".input");
 
 // restart sketch pad
 const restartButton = document.querySelector(".restartButton")
 restartButton.addEventListener("click", event => {
-    inputField = document.querySelector(".input");
-    // delete old grid and create new one
+    let inputField = document.querySelector(".input").value ;
+
+    if (inputField > 100 || inputField < 2) {
+        alert("Please use a number between 2 and 101. Otherwise you will get an ugly grid.")
+    } else {
+        // delete old grid and create new one
+        gridDivArray = document.querySelectorAll(".grid");
+        gridDivArray.forEach(element => {
+            element.remove();
+        });
+        createGrid(Number(inputField));
+        //console.log(inputField);
+    }
 })
 
-createGrid(gridNumbers)
+createGrid(gridNumbers);
