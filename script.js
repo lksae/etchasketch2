@@ -33,14 +33,22 @@ function createGrid(grids) {
         gridDiv.addEventListener("mouseover", event => {
             if(mode == "standard") {
                 gridDiv.style.backgroundColor = "black";
-            } else if (mode == "opacity") {
+            } else if (mode == "random") {
+                let randomColor1 = getRandomInt(255)+1;
+                let randomColor2 = getRandomInt(255)+1;
+                let randomColor3 = getRandomInt(255)+1;
                 
+                gridDiv.style.backgroundColor = `rgb(${randomColor1},${randomColor2},${randomColor3})`;
             }
             
         })
     }
     
     
+}
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
 
 // get input number for squares
